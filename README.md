@@ -1,41 +1,100 @@
+<div align="center">
 
-![Imgur](https://imgur.com/y8kGZvu.png)
-# Learn how to run the Friktion website!
+# Friktion Volts
 
-In 2 simple steps you can be running the Friktion website ([friktion.fi](http://friktion.fi)) on your own computer.
+**DeFi structured products frontend and SDK for Solana**
 
-**Note: If you are looking to integrate Friktion with your protocol, go [here](https://docs.friktion.fi/integration/overview) instead!**
+[![Solana](https://img.shields.io/badge/Solana-14F195?logo=solana&logoColor=white)](https://solana.com)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://react.dev)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-## How to run
-After cloning the repo, open your terminal and change directory to this repo, then run:
+*Revived fork of [Friktion Labs/frontend](https://github.com/Friktion-Labs/frontend) for the Solana Graveyard Hackathon*
+
+</div>
+
+---
+
+## Overview
+
+Friktion was a DeFi protocol on Solana offering structured products ("Volts") for automated yield strategies. This repository contains the full frontend application and SDK integration that powered [friktion.fi](https://friktion.fi).
+
+> **Status: REVIVED** -- Open-sourced UI with SDK integration, ready for exploration and forking.
+
+## Volts (Structured Products)
+
+| Volt | Strategy | Description |
+|------|----------|-------------|
+| **Volt 01** | Covered Calls | Generate yield by selling OTM call options |
+| **Volt 02** | Cash-Secured Puts | Earn premium by selling OTM put options |
+| **Volt 03** | Crab Strategy | Delta-neutral volatility harvesting |
+| **Volt 04** | Basis Yield | Funding rate arbitrage between spot and perps |
+| **Volt 05** | Capital Protection | Principal-protected structured notes |
+
+## Features
+
+- **Volt Dashboard** -- deposit, withdraw, and monitor positions across all Volt types
+- **Portfolio View** -- aggregate portfolio performance and PnL tracking
+- **SDK Integration** -- @friktion-labs/friktion-sdk for programmatic access
+- **Analytics** -- real-time epoch data, APY calculations, TVL metrics
+- **Multi-wallet** -- Phantom, Solflare, Glow, and other Solana wallets
+
+## Quick Start
+
+```bash
+# Clone
+git clone https://github.com/ExpertVagabond/friktion-volts.git
+cd friktion-volts
+
+# Install dependencies
+yarn
+
+# Optional: install gulp CLI
+yarn global add gulp-cli
+
+# Start development server
+yarn start
 ```
-1) yarn
-2) yarn start
-```
-*you may have to also do: `yarn global add gulp-cli`
 
-And now you can view the site at `http://localhost:3000`
-
-[A guide to understand this repo here](https://docs.friktion.fi/integration/open-sourced-ui)
+Open http://localhost:3000 in your browser.
 
 ## SDK
-Over the last 6 months, the core team has dedicated hundreds of hours into building out a SDK which enables anyone to use and compose on Friktion Volts - with great teams such as Investin, Snowflake, and Ultimate using it to build their products. This is a great chance for folks looking to become developers to enter the ecosystem!
 
-Friktion’s SDK can be accessed below. If you or your team are interested in developing a front-end for the Friktion protocol, we are happy to dedicate developer resources and help incentivize:
+The Friktion SDK enables programmatic interaction with Volt smart contracts:
 
-[Integration Overview](https://docs.friktion.fi/integration/overview)
+```typescript
+import { FriktionSDK } from "@friktion-labs/friktion-sdk";
+import { Connection } from "@solana/web3.js";
 
-[SDK Docs](https://docs.friktion.fi/integration/typescript-sdk)
+const connection = new Connection("https://api.mainnet-beta.solana.com");
+const sdk = new FriktionSDK({ connection });
 
-[SDK](https://www.npmjs.com/package/@friktion-labs/friktion-sdk)
+// Get all Volt 01 (Covered Call) products
+const volts = await sdk.getAllVoltsByType(1);
+```
 
+## Tech Stack
 
-Questions? Head to the developers channel in discord: https://discord.gg/friktion
+| Component | Technology |
+|-----------|-----------|
+| Framework | React + CRACO |
+| Language | TypeScript |
+| Styling | Less (Ant Design) |
+| State | React Contexts |
+| Blockchain | Solana Web3.js |
+| SDK | @friktion-labs/friktion-sdk |
+| Testing | Cypress (E2E) |
 
-## Contribution Guidelines
+## Resources
 
-Read the contribution guidelines [here](/contribution.md)
+- [SDK on npm](https://www.npmjs.com/package/@friktion-labs/friktion-sdk)
+- [Integration Docs](https://docs.friktion.fi/integration/overview)
+- [Contribution Guidelines](contribution.md)
+
+## Original Project
+
+This is a preserved fork of the Friktion Labs frontend. Friktion was one of the largest DeFi protocols on Solana before sunsetting operations. Teams like Investin, Snowflake, and Ultimate integrated with its SDK.
 
 ## License
 
-This repo is licensed under the [Apache License 2.0](https://en.wikipedia.org/wiki/Apache_License).
+[Apache License 2.0](LICENSE)
