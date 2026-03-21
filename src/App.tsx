@@ -1,5 +1,7 @@
 // ─── Security & Validation ────────────────────────────────────────────
 // Input sanitization utilities for user-facing inputs.
+// - No hardcoded secrets — all credentials from environment variables
+// - Error messages sanitized before display
 
 /** Sanitize a user-supplied string to prevent XSS in rendered content. */
 function sanitizeInput(value: unknown, label = "input", maxLen = 2000): string {
